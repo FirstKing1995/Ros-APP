@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Configurações Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-admin-painel">
+
+    <header class="topo-admin">
+        <div class="logo-redonda-pequena" style="background: var(--cor-destaque); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 18px;">R</div>
+        <div class="info-topo">
+            <h2 style="color: #FFF;">Configurações do Sistema</h2>
+        </div>
+    </header>
+
+    <main class="container-dashboard">
+
+        <div class="cartao-usuario-admin ativo">
+            <div class="cabecalho-user-admin">
+                <h3>Dados de Acesso (Admin)</h3>
+            </div>
+            <form id="form-config-admin">
+                <div class="grupo-input">
+                    <label style="color: #AAA;">E-mail de Login Admin</label>
+                    <input type="email" id="config-email" required style="background: #111; color: #FFF; border: 1px solid #333;">
+                </div>
+                <div class="grupo-input">
+                    <label style="color: #AAA;">Nova Senha Admin (Opcional)</label>
+                    <input type="password" id="config-senha" placeholder="Deixe em branco para não alterar" style="background: #111; color: #FFF; border: 1px solid #333;">
+                </div>
+
+                <hr style="border: none; border-top: 1px dashed #333; margin: 25px 0;">
+
+                <div class="cabecalho-user-admin">
+                    <h3>Regras de Negócio e Pagamento</h3>
+                </div>
+
+                <div style="display: flex; gap: 15px;">
+                    <div class="grupo-input" style="flex: 1;">
+                        <label style="color: #AAA;">Plano Mensal (R$)</label>
+                        <input type="number" step="0.01" id="config-valor-mensal" required style="background: #111; color: var(--cor-destaque); border: 1px solid #333; font-size: 18px; font-weight: bold;">
+                    </div>
+                    <div class="grupo-input" style="flex: 1;">
+                        <label style="color: #AAA;">Plano Anual (R$)</label>
+                        <input type="number" step="0.01" id="config-valor-anual" required style="background: #111; color: var(--cor-destaque); border: 1px solid #333; font-size: 18px; font-weight: bold;">
+                    </div>
+                </div>
+                <p style="font-size: 11px; color: #666; margin-top: -5px; margin-bottom: 15px;">*Estes valores serão oferecidos como opção na integração com Mercado Pago.</p>
+
+                <button type="submit" class="btn-principal" style="width: 100%; margin-top: 15px;">SALVAR CONFIGURAÇÕES</button>
+            </form>
+            <button onclick="sairDoAdmin()" class="btn-voltar-simples" style="width: 100%; margin-top: 15px; color: #FF4D4D; border: 1px solid #FF4D4D;">Fazer Logout</button>
+        </div>
+
+    </main>
+
+    <nav class="menu-inferior menu-admin">
+        <a href="admin-painel.html" class="menu-item">
+            <span class="material-symbols-rounded">monitoring</span>
+            <span>Dashboard</span>
+        </a>
+        <a href="admin-usuarios.html" class="menu-item">
+            <span class="material-symbols-rounded">manage_accounts</span>
+            <span>Salões</span>
+        </a>
+        <a href="admin-afiliados.html" class="menu-item">
+            <span class="material-symbols-rounded">handshake</span>
+            <span>Parceiras</span>
+        </a>
+        <a href="admin-suporte.html" class="menu-item">
+            <span class="material-symbols-rounded">forum</span>
+            <span>Suporte</span>
+        </a>
+        <a href="admin-config.html" class="menu-item ativo">
+            <span class="material-symbols-rounded">admin_panel_settings</span>
+            <span>Config.</span>
+        </a>
+    </nav>
+
+    <script src="admin-config.js"></script>
+</body>
+</html>

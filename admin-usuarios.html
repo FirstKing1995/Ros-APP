@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Gestão de Salões</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-admin-painel">
+
+    <header class="topo-admin">
+        <div class="logo-redonda-pequena" style="background: var(--cor-destaque); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 18px;">R</div>
+        <div class="info-topo">
+            <h2 style="color: #FFF;">Gestão de Salões</h2>
+        </div>
+    </header>
+
+    <main class="container-dashboard">
+
+        <div class="cabecalho-acoes-admin" style="margin-bottom: 15px;">
+            <div class="grupo-input input-admin" style="margin: 0; flex: 1;">
+                <input type="text" id="pesquisa-barbearia" placeholder="Pesquisar por nome ou e-mail..." onkeyup="filtrarUsuarios()">
+            </div>
+        </div>
+
+        <div id="lista-usuarios-admin">
+            <p style="text-align: center; color: #888; padding: 20px;">Carregando lista de salões...</p>
+        </div>
+
+    </main>
+
+    <nav class="menu-inferior menu-admin">
+        <a href="admin-painel.html" class="menu-item">
+            <span class="material-symbols-rounded">monitoring</span>
+            <span>Dashboard</span>
+        </a>
+        <a href="admin-usuarios.html" class="menu-item ativo">
+            <span class="material-symbols-rounded">manage_accounts</span>
+            <span>Salões</span>
+        </a>
+        <a href="admin-afiliados.html" class="menu-item">
+            <span class="material-symbols-rounded">handshake</span>
+            <span>Parceiras</span>
+        </a>
+        <a href="admin-suporte.html" class="menu-item">
+            <span class="material-symbols-rounded">forum</span>
+            <span>Suporte</span>
+        </a>
+        <a href="admin-config.html" class="menu-item">
+            <span class="material-symbols-rounded">admin_panel_settings</span>
+            <span>Config.</span>
+        </a>
+    </nav>
+
+    <script src="admin-usuarios.js"></script>
+</body>
+</html>

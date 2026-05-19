@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Equipe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-cinza">
+
+    <header class="topo-app">
+        <div class="logo-redonda-pequena">R</div>
+        <div class="info-topo">
+            <h2>Nossa Equipe</h2>
+        </div>
+    </header>
+
+    <main class="container-dashboard">
+
+        <button class="btn-principal btn-adicionar" onclick="abrirModalNovo()">
+            <span class="material-symbols-rounded">add_circle</span>
+            Cadastrar Nova Especialista
+        </button>
+
+        <div id="lista-equipe"></div>
+
+    </main>
+
+    <!-- Modal de Cadastro / Edição de Profissional -->
+    <div id="modal-barbeiro" class="modal-overlay" style="display: none;">
+        <div class="modal-conteudo">
+            <h2 id="titulo-modal" style="font-family: 'Playfair Display', serif; color: var(--cor-principal); font-size: 24px; margin-bottom: 22px;">
+                Cadastrar Especialista
+            </h2>
+
+            <form id="form-novo-barbeiro">
+                <input type="hidden" id="barbeiro-id">
+
+                <!-- Foto -->
+                <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;">
+                    <img id="preview-foto" src="" style="width: 55px; height: 55px; border-radius: 50%; display: none; object-fit: cover; border: 2px solid var(--cor-destaque);">
+                    <div class="grupo-input" style="flex: 1; margin: 0;">
+                        <label>Foto da Profissional (Opcional)</label>
+                        <input type="file" id="barbeiro-foto" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="grupo-input">
+                    <label>Nome da Profissional</label>
+                    <input type="text" id="barbeiro-nome" placeholder="Ex: Ana Lima" required>
+                </div>
+
+                <div class="grupo-input">
+                    <label>Especialidade (Cargo)</label>
+                    <input type="text" id="barbeiro-especialidade" placeholder="Ex: Cabeleireira, Manicure, Designer de Cílios">
+                </div>
+
+                <div class="grupo-input">
+                    <label>WhatsApp</label>
+                    <input type="tel" id="barbeiro-telefone" placeholder="(DDD) 90000-0000" required>
+                </div>
+
+                <hr style="border: none; border-top: 1px dashed #EDE0E2; margin: 20px 0;">
+
+                <!-- Serviços -->
+                <div class="grupo-input">
+                    <label style="color: var(--cor-destaque); font-size: 13px; text-transform: none; letter-spacing: 0;">
+                        Serviços que ela realiza:
+                    </label>
+                    <div style="display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap;">
+                        <input type="text"   id="input-servico-nome"  placeholder="Ex: Coloração"  style="flex: 2; min-width: 80px; padding: 10px; border: 1.5px solid #EDE0E2; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 13px;">
+                        <input type="number" id="input-servico-valor" placeholder="R$"              style="flex: 1; min-width: 50px; padding: 10px; border: 1.5px solid #EDE0E2; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 13px;">
+                        <input type="text"   id="input-servico-tempo" placeholder="Ex: 60min"       style="flex: 1; min-width: 50px; padding: 10px; border: 1.5px solid #EDE0E2; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 13px;">
+                        <button type="button" onclick="addServico()"
+                                style="background: var(--cor-principal); color: #FFF; border: none; border-radius: 8px; padding: 0 14px; cursor: pointer; font-size: 18px;">+</button>
+                    </div>
+                    <div id="lista-servicos-adicionados" style="display: flex; flex-direction: column; gap: 5px; font-size: 12px; color: #777;"></div>
+                </div>
+
+                <hr style="border: none; border-top: 1px dashed #EDE0E2; margin: 20px 0;">
+
+                <!-- Horários -->
+                <div class="grupo-input">
+                    <label style="color: var(--cor-destaque); font-size: 13px; text-transform: none; letter-spacing: 0;">
+                        Horários de trabalho:
+                    </label>
+                    <div style="display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap;">
+                        <select id="input-horario-dia" style="flex: 2; min-width: 100px; padding: 10px; border: 1.5px solid #EDE0E2; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 13px;">
+                            <option value="Segunda">Segunda</option>
+                            <option value="Terça">Terça</option>
+                            <option value="Quarta">Quarta</option>
+                            <option value="Quinta">Quinta</option>
+                            <option value="Sexta">Sexta</option>
+                            <option value="Sábado">Sábado</option>
+                            <option value="Domingo">Domingo</option>
+                        </select>
+                        <input type="time" id="input-horario-inicio" style="flex: 1; padding: 10px; border: 1.5px solid #EDE0E2; border-radius: 8px; font-family: 'Montserrat', sans-serif;">
+                        <input type="time" id="input-horario-fim"    style="flex: 1; padding: 10px; border: 1.5px solid #EDE0E2; border-radius: 8px; font-family: 'Montserrat', sans-serif;">
+                        <button type="button" onclick="addHorario()"
+                                style="background: var(--cor-principal); color: #FFF; border: none; border-radius: 8px; padding: 0 14px; cursor: pointer; font-size: 18px;">+</button>
+                    </div>
+                    <div id="lista-horarios-adicionados" style="display: flex; flex-direction: column; gap: 5px; font-size: 12px; color: #777;"></div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 25px;">
+                    <button type="button" class="btn-voltar-simples"
+                            style="flex: 1; border: 1.5px solid #EDE0E2; padding: 12px; border-radius: 10px; color: #888;"
+                            onclick="fecharModal()">Cancelar</button>
+                    <button type="submit" class="btn-principal" id="btn-salvar-form" style="flex: 1;">SALVAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <nav class="menu-inferior">
+        <a href="dashboard.html"    class="menu-item"><span class="material-symbols-rounded">space_dashboard</span><span>Início</span></a>
+        <a href="agendamentos.html" class="menu-item"><span class="material-symbols-rounded">calendar_month</span><span>Agenda</span></a>
+        <a href="barbeiros.html"    class="menu-item ativo"><span class="material-symbols-rounded">spa</span><span>Equipe</span></a>
+        <a href="link.html"         class="menu-item"><span class="material-symbols-rounded">share</span><span>Link</span></a>
+        <a href="perfil.html"       class="menu-item"><span class="material-symbols-rounded">person</span><span>Perfil</span></a>
+    </nav>
+
+    <script src="barbeiros.js"></script>
+</body>
+</html>

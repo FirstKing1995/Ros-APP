@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Cadastro de Parceira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Bebas+Neue&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-cinza">
+
+    <div class="container-login">
+        <div class="box-login">
+            <h1 class="titulo-app" style="color: var(--cor-destaque);">SEJA UMA PARCEIRA</h1>
+            <p class="subtitulo">Indique o Rosê PRO e ganhe comissões recorrentes! 🌹</p>
+
+            <div style="background: rgba(183, 110, 121, 0.1); border: 1px solid var(--cor-destaque); color: var(--cor-destaque); padding: 12px; border-radius: 8px; text-align: center; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;">
+                <span class="material-symbols-rounded" style="font-size: 18px; vertical-align: middle;">all_inclusive</span>
+                COMISSÃO RECORRENTE VITALÍCIA!<br>
+                <span style="font-size: 12px; font-weight: 400; color: #D4A0AB;">Ganhe 50% TODO MÊS de cada salão enquanto ele for assinante!</span>
+            </div>
+
+            <form id="form-cadastro-afiliado">
+                <div class="grupo-input">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+                </div>
+                <div class="grupo-input">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="Seu melhor e-mail para contato" required>
+                </div>
+                <div class="grupo-input">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" placeholder="(DDD) 90000-0000" required>
+                </div>
+                <div class="grupo-input">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Crie uma senha de acesso" required>
+                </div>
+                <button type="submit" class="btn-principal">QUERO SER PARCEIRA</button>
+            </form>
+
+            <div class="area-cadastro">
+                <p>Já é nossa parceira?</p>
+                <button class="btn-secundario" onclick="window.location.href='afiliado-login.html'">ACESSAR PAINEL</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="afiliado-cadastro.js"></script>
+</body>
+</html>

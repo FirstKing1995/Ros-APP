@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Bem-vinda!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-cliente">
+
+    <div class="container-cliente">
+
+        <div class="topo-cliente">
+            <!-- Logo substituída dinamicamente pelo JS se o salão tiver logo cadastrada -->
+            <div class="logo-circle" id="logo-cliente-tela" style="margin: 0 auto 18px auto; width: 80px; height: 80px; font-size: 28px;">R</div>
+            <h1 class="titulo-app" id="nome-barbearia-cliente" style="font-size: 26px;">Carregando...</h1>
+            <p class="subtitulo" style="margin-top: 6px; margin-bottom: 0;">Seja muito bem-vinda! ✨</p>
+        </div>
+
+        <div class="opcoes-cliente">
+
+            <button class="btn-gigante btn-rose" onclick="irParaAgendamento()">
+                <span class="material-symbols-rounded">calendar_add_on</span>
+                AGENDAR UM HORÁRIO
+            </button>
+
+            <button class="btn-gigante btn-escuro" onclick="irParaConsulta()">
+                <span class="material-symbols-rounded">search</span>
+                CONSULTAR MEU AGENDAMENTO
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="cliente.js"></script>
+</body>
+</html>

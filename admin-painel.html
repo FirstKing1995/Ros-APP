@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Dashboard Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="fundo-admin-painel">
+
+    <header class="topo-admin">
+        <div class="logo-redonda-pequena" style="background: var(--cor-destaque); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 18px;">R</div>
+        <div class="info-topo">
+            <h2 style="color: #FFF;">Painel de Controle</h2>
+            <button onclick="sairDoAdmin()" class="btn-sair" style="color: #AAA;">Encerrar Sessão</button>
+        </div>
+    </header>
+
+    <main class="container-dashboard">
+
+        <div class="cabecalho-acoes-admin">
+            <div class="grupo-input input-admin" style="margin: 0; flex: 1;">
+                <label style="font-size: 10px;">Filtrar Mês/Ano</label>
+                <input type="month" id="filtro-mes-admin" onchange="buscarDadosSaaS()">
+            </div>
+        </div>
+
+        <button onclick="acionarInstalacao()" style="background: #1C1C1E; border: 1px solid var(--cor-destaque); color: var(--cor-destaque); width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 5px; font-size: 14px; font-weight: bold; cursor: pointer; margin-bottom: 20px;">
+            <span class="material-symbols-rounded" style="font-size: 20px;">install_mobile</span>
+            Instalar Aplicativo no Celular
+        </button>
+
+        <div class="grid-metricas-admin">
+            <div class="card-metrica" style="border-left: 4px solid #4CAF50;">
+                <span class="material-symbols-rounded icone-metrica" style="color: #4CAF50;">hourglass_empty</span>
+                <h4>Em Teste (7 Dias)</h4>
+                <p id="metrica-testes">0</p>
+                <small>Buscando validação</small>
+            </div>
+            <div class="card-metrica" style="border-left: 4px solid #25D366;">
+                <span class="material-symbols-rounded icone-metrica" style="color: #25D366;">check_circle</span>
+                <h4>Assinantes Pagas</h4>
+                <p id="metrica-ativos">0</p>
+                <small>Total de pagantes</small>
+            </div>
+            <div class="card-metrica destaque-metrica">
+                <span class="material-symbols-rounded icone-metrica" style="color:#fff;">payments</span>
+                <h4 style="color:#fff;">Faturamento Mensal</h4>
+                <p id="metrica-faturamento" style="color:#fff;">R$ 0,00</p>
+                <small style="color:#F5E8EA;">Estimativa do mês</small>
+            </div>
+            <div class="card-metrica" style="border-left: 4px solid #FF4D4D;">
+                <span class="material-symbols-rounded icone-metrica" style="color: #FF4D4D;">person_remove</span>
+                <h4>Cancelamentos</h4>
+                <p id="metrica-cancelamentos">0</p>
+                <small>Evasões e Vencidos</small>
+            </div>
+        </div>
+
+        <div class="card-grafico-admin">
+            <h3>Evolução de Salões (Últimos 6 Meses)</h3>
+            <canvas id="graficoEvolucao" height="200"></canvas>
+        </div>
+
+    </main>
+
+    <nav class="menu-inferior menu-admin">
+        <a href="admin-painel.html" class="menu-item ativo">
+            <span class="material-symbols-rounded">monitoring</span>
+            <span>Dashboard</span>
+        </a>
+        <a href="admin-usuarios.html" class="menu-item">
+            <span class="material-symbols-rounded">manage_accounts</span>
+            <span>Salões</span>
+        </a>
+        <a href="admin-afiliados.html" class="menu-item">
+            <span class="material-symbols-rounded">handshake</span>
+            <span>Parceiras</span>
+        </a>
+        <a href="admin-suporte.html" class="menu-item">
+            <span class="material-symbols-rounded">forum</span>
+            <span>Suporte</span>
+        </a>
+        <a href="admin-config.html" class="menu-item">
+            <span class="material-symbols-rounded">admin_panel_settings</span>
+            <span>Config.</span>
+        </a>
+    </nav>
+
+    <script src="admin-painel.js"></script>
+</body>
+</html>

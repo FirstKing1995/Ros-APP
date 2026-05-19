@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Meus Agendamentos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-cliente">
+
+    <div class="container-cliente">
+
+        <div class="topo-agendamento">
+            <button onclick="voltarAoInicio()" class="btn-voltar-cliente">
+                <span class="material-symbols-rounded">arrow_back</span> Início
+            </button>
+            <h2 id="titulo-passo">Meus Horários</h2>
+        </div>
+
+        <div id="area-busca">
+            <p class="instrucao-passo">Digite seu WhatsApp para consultar seus agendamentos:</p>
+            <div class="grupo-input">
+                <input type="tel" id="busca-whatsapp" placeholder="(DDD) 90000-0000">
+            </div>
+            <button class="btn-principal" onclick="consultarMeusAgendamentos()" id="btn-buscar">BUSCAR MEUS HORÁRIOS</button>
+        </div>
+
+        <div id="area-resultados" style="display: none; margin-top: 30px;">
+            <p class="instrucao-passo" style="color: var(--cor-destaque); font-weight: 700;">
+                Horários Encontrados:
+            </p>
+            <div id="lista-meus-agendamentos"></div>
+        </div>
+
+    </div>
+
+    <script src="consultar.js"></script>
+</body>
+</html>

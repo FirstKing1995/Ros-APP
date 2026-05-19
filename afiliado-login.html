@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Portal da Parceira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Bebas+Neue&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-cinza">
+
+    <div class="container-login">
+        <div class="box-login">
+            <div class="logo-area">
+                <img src="logo.svg" alt="Rosê APP" style="width: 100px; height: auto; margin-bottom: 5px;">
+            </div>
+
+            <h1 class="titulo-app" style="color: var(--cor-destaque);">PORTAL DA PARCEIRA</h1>
+            <p class="subtitulo">Acesse seu painel de comissões</p>
+
+            <form id="form-login-afiliado">
+                <div class="grupo-input">
+                    <label for="email">E-mail de Afiliada</label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail" required>
+                </div>
+                <div class="grupo-input">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Sua senha" required>
+                </div>
+                <a href="#" onclick="esqueciMinhaSenha('afiliado'); return false;" style="color: #AAA; font-size: 14px; text-decoration: underline;">Esqueci minha senha</a>
+                <button type="submit" class="btn-principal">ACESSAR PAINEL</button>
+            </form>
+
+            <div class="area-cadastro">
+                <p>Ainda não é nossa parceira?</p>
+                <button class="btn-secundario" onclick="window.location.href='afiliado-cadastro.html'">QUERO SER PARCEIRA</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="afiliado-login.js"></script>
+</body>
+</html>

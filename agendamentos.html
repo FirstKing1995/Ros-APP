@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Agendamentos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-cinza">
+
+    <header class="topo-app">
+        <div class="logo-redonda-pequena">R</div>
+        <div class="info-topo">
+            <h2>Agenda do Dia</h2>
+        </div>
+    </header>
+
+    <main class="container-dashboard">
+        <div class="area-filtro">
+            <label for="filtro-data">Selecione o dia:</label>
+            <input type="date" id="filtro-data" class="input-data">
+        </div>
+
+        <div id="lista-agendamentos"></div>
+    </main>
+
+    <nav class="menu-inferior">
+        <a href="dashboard.html"    class="menu-item"><span class="material-symbols-rounded">space_dashboard</span><span>Início</span></a>
+        <a href="agendamentos.html" class="menu-item ativo"><span class="material-symbols-rounded">calendar_month</span><span>Agenda</span></a>
+        <a href="barbeiros.html"    class="menu-item"><span class="material-symbols-rounded">spa</span><span>Equipe</span></a>
+        <a href="link.html"         class="menu-item"><span class="material-symbols-rounded">share</span><span>Link</span></a>
+        <a href="perfil.html"       class="menu-item"><span class="material-symbols-rounded">person</span><span>Perfil</span></a>
+    </nav>
+
+    <script src="agendamentos.js"></script>
+</body>
+</html>

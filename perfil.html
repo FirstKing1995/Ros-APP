@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Meu Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-cinza">
+
+    <header class="topo-app">
+        <div class="logo-redonda-pequena">R</div>
+        <div class="info-topo">
+            <h2>Meu Perfil</h2>
+            <button onclick="sairDoApp()" class="btn-sair">Sair do App</button>
+        </div>
+    </header>
+
+    <main class="container-dashboard">
+
+        <!-- Dados do Salão -->
+        <div class="cartao-perfil">
+            <div class="cabecalho-perfil">
+                <span class="material-symbols-rounded">storefront</span>
+                <h3>Dados do Salão</h3>
+            </div>
+
+            <form id="form-editar-perfil">
+                <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
+                    <img id="preview-logo" src="" style="width: 70px; height: 70px; border-radius: 50%; display: none; object-fit: cover; border: 2px solid var(--cor-destaque);">
+                    <div id="placeholder-logo" class="logo-circle" style="width: 70px; height: 70px; margin: 0; display: flex; align-items: center; justify-content: center; font-size: 22px;">R</div>
+                    <div class="grupo-input" style="flex: 1; margin: 0;">
+                        <label>Logo do Salão</label>
+                        <input type="file" id="input-logo" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="grupo-input">
+                    <label>Nome do Salão / Studio</label>
+                    <input type="text" id="perfil-nome" placeholder="Carregando..." required>
+                </div>
+                <div class="grupo-input">
+                    <label>E-mail (Login)</label>
+                    <input type="email" id="perfil-email" disabled style="background-color: var(--cor-fundo); color: #AAA; border: 1px dashed #EDE0E2;">
+                </div>
+                <div class="grupo-input">
+                    <label>WhatsApp</label>
+                    <input type="tel" id="perfil-whatsapp" placeholder="(DDD) 90000-0000" required>
+                </div>
+                <div class="grupo-input">
+                    <label>Nova Senha (Opcional)</label>
+                    <input type="password" id="perfil-senha" placeholder="Digite apenas para alterar">
+                </div>
+                <button type="submit" class="btn-principal" style="font-size: 16px; padding: 13px; margin-top: 5px;">
+                    SALVAR ALTERAÇÕES
+                </button>
+            </form>
+        </div>
+
+        <!-- Instalar App -->
+        <button onclick="acionarInstalacao()"
+                style="background: #1C1C1E; border: 1.5px solid #B76E79; color: #B76E79; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; border-radius: var(--borda-raio); font-size: 14px; font-weight: bold; cursor: pointer; margin-bottom: 22px; font-family: 'Montserrat', sans-serif;">
+            <span class="material-symbols-rounded" style="font-size: 20px;">install_mobile</span>
+            Instalar App no Celular
+        </button>
+
+        <!-- Cartão de Assinatura Premium (estilo Velvet Luxo) -->
+        <div class="cartao-premium">
+            <div class="conteudo-premium">
+                <div class="cabecalho-premium">
+                    <span class="material-symbols-rounded icone-rose-glow">workspace_premium</span>
+                    <h3>ROSÊ PRO</h3>
+                </div>
+
+                <div class="painel-status">
+                    <div class="status-rose">
+                        <span class="ponto-pulsante"></span> ATIVO
+                    </div>
+                    <div class="dados-sistema">
+                        <p class="label-premium">TEMPO RESTANTE</p>
+                        <p class="dias-restantes-premium"><b id="dias-texto">28</b> DIAS</p>
+                    </div>
+                </div>
+
+                <p class="beneficios-premium">
+                    ROSÊ_PRO // ACESSO TOTAL A TODOS OS RECURSOS PREMIUM<br>
+                    DE GESTÃO, AGENDAMENTO E FINANCEIRO.
+                </p>
+
+                <button class="btn-link-cancelar-premium" onclick="cancelarAssinatura()">
+                    [ ENCERRAR_ASSINATURA_ ]
+                </button>
+            </div>
+        </div>
+
+        <!-- Suporte -->
+        <div class="cartao-perfil cartao-suporte">
+            <div class="cabecalho-suporte">
+                <span class="material-symbols-rounded">support_agent</span>
+                <h3>Central de Suporte</h3>
+            </div>
+
+            <div class="area-chat" id="historico-mensagens">
+                <div class="mensagem msg-admin">
+                    <p>Olá! Seja bem-vinda ao Rosê APP 🌹 Como posso te ajudar hoje?</p>
+                </div>
+            </div>
+
+            <div class="area-enviar-mensagem">
+                <input type="text" id="nova-mensagem" placeholder="Digite sua mensagem...">
+                <button onclick="enviarMensagem()" class="btn-enviar-msg">
+                    <span class="material-symbols-rounded">send</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <nav class="menu-inferior">
+        <a href="dashboard.html"    class="menu-item"><span class="material-symbols-rounded">space_dashboard</span><span>Início</span></a>
+        <a href="agendamentos.html" class="menu-item"><span class="material-symbols-rounded">calendar_month</span><span>Agenda</span></a>
+        <a href="barbeiros.html"    class="menu-item"><span class="material-symbols-rounded">spa</span><span>Equipe</span></a>
+        <a href="link.html"         class="menu-item"><span class="material-symbols-rounded">share</span><span>Link</span></a>
+        <a href="perfil.html"       class="menu-item ativo"><span class="material-symbols-rounded">person</span><span>Perfil</span></a>
+    </nav>
+
+    <script src="perfil.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Painel da Parceira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="fundo-admin-painel">
+
+    <header class="topo-admin" style="border-bottom: 2px solid var(--cor-destaque);">
+        <div class="logo-redonda-pequena" style="background: var(--cor-destaque); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 14px;">PRO</div>
+        <div class="info-topo">
+            <h2 style="color: #FFF;" id="nome-afiliado">Olá, Parceira! 🌹</h2>
+            <button onclick="sairAfiliado()" class="btn-sair" style="color: #AAA;">Sair</button>
+        </div>
+    </header>
+
+    <main class="container-dashboard">
+
+        <button onclick="acionarInstalacao()" style="background: #1C1C1E; border: 1px solid var(--cor-destaque); color: var(--cor-destaque); width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 5px; font-size: 14px; font-weight: bold; cursor: pointer; margin-bottom: 20px;">
+            <span class="material-symbols-rounded" style="font-size: 20px;">install_mobile</span>
+            Instalar Aplicativo no Celular
+        </button>
+
+        <!-- CARD SEU LINK DE VENDAS -->
+        <div class="cartao-premium" style="margin-bottom: 20px;">
+            <div class="conteudo-premium">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <span class="material-symbols-rounded" style="color: var(--cor-destaque); font-size: 28px;">link</span>
+                    <h3 style="color: var(--cor-destaque); font-family: 'Playfair Display', serif; margin: 0;">SEU LINK DE VENDAS</h3>
+                </div>
+                <p style="color: #CCC; font-size: 13px; margin-bottom: 12px;">Compartilhe este link. Você ganha comissão de <b>todas as renovações</b> dos salões que vierem por ele!</p>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="link-afiliado" readonly style="flex:1; padding:12px; border-radius:5px; border:1px solid var(--cor-destaque); background:#111; color:var(--cor-destaque); font-weight:bold; font-size:13px;">
+                    <button onclick="copiarLink()" style="background:var(--cor-destaque); color:#fff; border:none; border-radius:5px; padding:0 15px; font-weight:bold; cursor:pointer;">
+                        <span class="material-symbols-rounded">content_copy</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: rgba(183,110,121,0.08); border-left: 4px solid var(--cor-destaque); padding: 10px 15px; margin-bottom: 20px; border-radius: 4px;">
+            <p style="color: #FFF; font-size: 12px; margin: 0; line-height: 1.5;">
+                <span class="material-symbols-rounded" style="font-size:16px; vertical-align:middle; color:var(--cor-destaque);">info</span>
+                O valor abaixo é a somatória das assinaturas do <b>Mês Vigente</b>. O saldo é transferido para seu PIX automaticamente todo <b>Dia 1º</b> do mês seguinte.
+            </p>
+        </div>
+
+        <div class="grid-metricas-admin">
+            <div class="card-metrica" style="border-left: 4px solid #4CAF50;">
+                <span class="material-symbols-rounded icone-metrica" style="color: #4CAF50;">hourglass_empty</span>
+                <h4>Em Teste</h4>
+                <p id="metrica-testes">0</p>
+            </div>
+            <div class="card-metrica" style="border-left: 4px solid #25D366;">
+                <span class="material-symbols-rounded icone-metrica" style="color: #25D366;">spa</span>
+                <h4>Sua Carteira Ativa</h4>
+                <p id="metrica-pagos">0</p>
+            </div>
+            <div class="card-metrica destaque-metrica" style="grid-column: span 2;">
+                <span class="material-symbols-rounded icone-metrica">monetization_on</span>
+                <h4>A Receber neste Mês</h4>
+                <p id="metrica-comissao-mes" style="font-size: 28px;">R$ 0,00</p>
+            </div>
+            <div class="card-metrica" style="grid-column: span 2; border: 1px dashed var(--cor-destaque); background: transparent;">
+                <h4 style="color: var(--cor-destaque);">💰 Total Histórico Faturado</h4>
+                <p id="metrica-total-historico" style="color: #FFF; font-size: 20px;">R$ 0,00</p>
+            </div>
+        </div>
+
+        <div class="card-grafico-admin" style="margin-top: 20px;">
+            <h3 style="color: var(--cor-destaque);">Seu Crescimento (6 Meses)</h3>
+            <canvas id="graficoAfiliado" height="200"></canvas>
+        </div>
+
+        <!-- PERFIL E PAGAMENTO -->
+        <div class="cartao-perfil" style="background: #1C1C1E; border: 1px solid #333; margin-top: 20px;">
+            <div class="cabecalho-perfil">
+                <span class="material-symbols-rounded" style="color: var(--cor-destaque);">manage_accounts</span>
+                <h3 style="color: #FFF;">Seu Perfil & Recebimento</h3>
+            </div>
+            <form id="form-perfil-afiliado">
+                <div style="display:flex; gap:15px; align-items:center; margin-bottom:20px;">
+                    <img id="preview-foto-afiliado" src="" style="width:70px;height:70px;border-radius:50%;display:none;object-fit:cover;border:2px solid var(--cor-destaque);">
+                    <div id="placeholder-foto-afiliado" style="width:70px;height:70px;border-radius:50%;background:#333;color:var(--cor-destaque);display:flex;align-items:center;justify-content:center;font-size:24px;border:2px dashed var(--cor-destaque);">
+                        <span class="material-symbols-rounded">add_a_photo</span>
+                    </div>
+                    <div class="grupo-input" style="flex:1; margin:0;">
+                        <label style="color:#AAA;">Sua Foto (Ranking)</label>
+                        <input type="file" id="input-foto-afiliado" accept="image/*" style="color:#FFF;">
+                    </div>
+                </div>
+
+                <div class="grupo-input">
+                    <label style="color:#AAA;">E-mail (Login)</label>
+                    <input type="email" id="perfil-email-afiliado" disabled style="background:#111;color:#888;border:1px dashed #444;">
+                </div>
+                <div class="grupo-input">
+                    <label style="color:#AAA;">Sua Chave PIX</label>
+                    <input type="text" id="perfil-pix" placeholder="Chave para receber as comissões" required style="background:#111;color:#FFF;border:1px solid #444;">
+                </div>
+                <div class="grupo-input">
+                    <label style="color:#AAA;">Nova Senha (Opcional)</label>
+                    <input type="password" id="perfil-senha-afiliado" placeholder="Digite apenas para alterar" style="background:#111;color:#FFF;border:1px solid #444;">
+                </div>
+                <button type="submit" class="btn-principal" style="margin-top:10px;">SALVAR PERFIL</button>
+            </form>
+        </div>
+
+        <!-- SUPORTE CHAT -->
+        <div class="cartao-perfil cartao-suporte" style="background: #1C1C1E; border: 1px solid #333; margin-top: 20px;">
+            <div class="cabecalho-suporte">
+                <span class="material-symbols-rounded" style="color: var(--cor-destaque);">support_agent</span>
+                <h3 style="color: #FFF;">Suporte à Parceira</h3>
+            </div>
+            <div class="area-chat" id="historico-chat-afiliado" style="background: #111; border: 1px solid #444;">
+                <div class="mensagem msg-admin">
+                    <p>Olá! Equipe Rosê APP aqui. 🌹 Precisa de ajuda com suas vendas ou pagamentos?</p>
+                </div>
+            </div>
+            <div class="area-enviar-mensagem">
+                <input type="text" id="nova-msg-afiliado" placeholder="Digite sua mensagem..." style="background:#222;color:#FFF;border:1px solid #444;">
+                <button onclick="enviarMensagemAfiliado()" class="btn-enviar-msg" style="background:var(--cor-destaque);color:#fff;">
+                    <span class="material-symbols-rounded">send</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="afiliado-painel.js"></script>
+</body>
+</html>

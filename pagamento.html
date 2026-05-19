@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Assinatura PRO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-pagamento">
+
+    <div class="header-checkout" style="max-width: 500px; width: 100%;">
+        <img src="logo.svg" alt="Rosê APP" style="width: 120px; height: 120px; object-fit: contain; margin-bottom: 20px;">
+        <h2>Seu Salão Está Pausado</h2>
+        <p>Mas as suas clientes não podem esperar. Reative seu acesso agora e volte a faturar com a agenda organizada e cheia.</p>
+    </div>
+
+    <div class="box-beneficios">
+        <h3>O que você garante no plano PRO:</h3>
+        <ul class="lista-beneficios">
+            <li><span class="material-symbols-rounded">check_circle</span> Link exclusivo de agendamento 24h para clientes</li>
+            <li><span class="material-symbols-rounded">check_circle</span> Gestão completa da equipe e dos serviços</li>
+            <li><span class="material-symbols-rounded">check_circle</span> Motor inteligente de horários sem conflitos</li>
+            <li><span class="material-symbols-rounded">check_circle</span> Lembretes via WhatsApp (reduza faltas!)</li>
+            <li><span class="material-symbols-rounded">check_circle</span> Painel financeiro e métricas do seu salão</li>
+        </ul>
+    </div>
+
+    <div style="display: flex; justify-content: center; width: 100%; padding: 0 20px 20px 20px;">
+        <div class="cartao-plano destaque" style="max-width: 450px; width: 100%; border: 2px solid #B76E79; box-shadow: 0 10px 30px rgba(183, 110, 121, 0.2);">
+
+            <div class="tag-desconto" style="background: linear-gradient(135deg, #B76E79 0%, #D4A0AB 100%); color: #FFF;">
+                OFERTA ESPECIAL — 75% OFF
+            </div>
+
+            <h3 style="color: #B76E79; font-family: 'Playfair Display', serif; font-size: 30px; letter-spacing: 0; margin-top: 25px; margin-bottom: 8px;">
+                Rosê PRO
+            </h3>
+
+            <div class="preco-ancora">De R$ 80,00 por mês</div>
+
+            <div class="preco-plano" style="margin: 15px 0;">
+                <span class="moeda">R$</span>
+                <span id="valor-mensal-tela" style="font-size: 52px; font-weight: 800; color: #FFF;">--,--</span>
+                <span class="periodo">/mês</span>
+            </div>
+
+            <p style="color: #AAA; font-size: 13px; margin-top: -5px; margin-bottom: 25px; line-height: 1.5;">
+                Custa menos do que uma hidratação para organizar e escalar todo o seu salão.
+            </p>
+
+            <ul style="list-style: none; padding: 0; margin: 0 0 30px 0; text-align: left; color: #DDD; font-size: 14px; font-family: 'Montserrat', sans-serif;">
+                <li style="margin-bottom: 13px; display: flex; align-items: center; gap: 10px;">
+                    <span class="material-symbols-rounded" style="color: #B76E79; font-size: 20px;">spa</span>
+                    Agendamentos Ilimitados para todos os serviços
+                </li>
+                <li style="margin-bottom: 13px; display: flex; align-items: center; gap: 10px;">
+                    <span class="material-symbols-rounded" style="color: #B76E79; font-size: 20px;">groups</span>
+                    Gestão completa da sua equipe de especialistas
+                </li>
+                <li style="margin-bottom: 13px; display: flex; align-items: center; gap: 10px;">
+                    <span class="material-symbols-rounded" style="color: #B76E79; font-size: 20px;">link</span>
+                    Link exclusivo para suas clientes agendarem
+                </li>
+                <li style="display: flex; align-items: center; gap: 10px;">
+                    <span class="material-symbols-rounded" style="color: #B76E79; font-size: 20px;">support_agent</span>
+                    Suporte VIP direto no app
+                </li>
+            </ul>
+
+            <button class="btn-pagar" onclick="iniciarPagamento('mensal')">
+                <span class="material-symbols-rounded">lock_open</span>
+                Liberar Meu Acesso Agora
+            </button>
+
+            <p style="color: #555; font-size: 12px; margin-top: 15px; margin-bottom: 0;">
+                <span class="material-symbols-rounded" style="font-size: 14px; vertical-align: middle;">verified_user</span>
+                Sem fidelidade. Cancele quando quiser.
+            </p>
+
+        </div>
+    </div>
+
+    <button onclick="sairDoApp()"
+            style="background: transparent; border: none; color: #555; font-family: 'Montserrat', sans-serif; text-decoration: underline; margin-top: 10px; cursor: pointer; font-size: 13px;">
+        Voltar para o Login
+    </button>
+
+    <script src="pagamento.js"></script>
+</body>
+</html>

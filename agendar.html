@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosê APP — Agendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-cliente">
+
+    <div class="container-cliente">
+
+        <div class="topo-agendamento">
+            <button onclick="window.history.back()" class="btn-voltar-cliente">
+                <span class="material-symbols-rounded">arrow_back</span> Voltar
+            </button>
+            <h2 id="titulo-passo">1. Identificação</h2>
+        </div>
+
+        <!-- PASSO 1: Identificação -->
+        <div id="passo-1-identificacao">
+
+            <div id="area-ja-tenho-cadastro">
+                <p class="instrucao-passo">Digite seu WhatsApp para continuar:</p>
+                <div class="grupo-input">
+                    <input type="tel" id="busca-whatsapp" placeholder="(DDD) 90000-0000">
+                </div>
+                <button class="btn-principal" onclick="buscarCliente()" id="btn-buscar-cliente">CONTINUAR</button>
+
+                <div class="divisor-ou"><span>OU</span></div>
+
+                <button class="btn-secundario" onclick="mostrarAreaCadastro()">SOU UMA NOVA CLIENTE</button>
+            </div>
+
+            <div id="area-novo-cadastro" style="display: none;">
+                <p class="instrucao-passo">Preencha seus dados rapidinho ✨</p>
+                <form id="form-cadastro-cliente">
+                    <div class="grupo-input">
+                        <label>Nome Completo</label>
+                        <input type="text" id="cad-nome" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>WhatsApp</label>
+                        <input type="tel" id="cad-whatsapp" placeholder="(DDD) 90000-0000" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>E-mail (Opcional)</label>
+                        <input type="email" id="cad-email">
+                    </div>
+                    <div class="grupo-input">
+                        <label>Data de Nascimento</label>
+                        <input type="date" id="cad-nascimento" required>
+                    </div>
+                    <button type="submit" class="btn-principal" id="btn-salvar-cliente">CADASTRAR E CONTINUAR</button>
+                </form>
+
+                <button class="btn-voltar-simples" onclick="mostrarAreaBusca()">Já tenho cadastro</button>
+            </div>
+        </div>
+
+        <!-- PASSO 2: Escolher Profissional -->
+        <div id="passo-2-barbeiros" style="display: none;">
+            <p class="instrucao-passo">Com qual especialista você deseja ser atendida?</p>
+            <div id="lista-barbeiros-cliente" class="grid-barbeiros"></div>
+        </div>
+
+        <!-- PASSO 3: Escolher Serviços -->
+        <div id="passo-3-servicos" style="display: none;">
+            <p class="instrucao-passo">O que vamos fazer hoje? 💅</p>
+
+            <div id="lista-servicos-cliente" class="grid-servicos"></div>
+
+            <div class="rodape-total" id="rodape-total" style="display: none;">
+                <div class="info-total">
+                    <p>Total: <b id="valor-total-tela">R$ 0,00</b></p>
+                    <span id="tempo-total-tela">0 min</span>
+                </div>
+                <button class="btn-principal" onclick="avancarParaEscolherDataHora()">ESCOLHER HORÁRIO</button>
+            </div>
+        </div>
+
+        <!-- PASSO 4: Data e Hora -->
+        <div id="passo-4-data-hora" style="display: none;">
+            <p class="instrucao-passo">Para qual dia você quer agendar?</p>
+
+            <div class="grupo-input">
+                <input type="date" id="data-agendamento" onchange="buscarHorariosDisponiveis()">
+            </div>
+
+            <div id="area-horarios" style="display: none; margin-top: 25px;">
+                <p class="instrucao-passo">Horários disponíveis:</p>
+
+                <div class="grid-horarios" id="lista-horarios" style="margin-bottom: 30px;"></div>
+
+                <button class="btn-principal" id="btn-continuar-resumo" style="display: none; width: 100%;" onclick="avancarParaResumo()">
+                    VER RESUMO FINAL
+                </button>
+            </div>
+        </div>
+
+        <!-- PASSO 5: Resumo e Confirmação -->
+        <div id="passo-5-resumo" style="display: none;">
+            <div class="cartao-resumo">
+                <span class="material-symbols-rounded icone-sucesso">check_circle</span>
+                <h3>Quase lá! 🌹</h3>
+                <p>Confira os detalhes do seu agendamento:</p>
+
+                <div class="detalhes-resumo">
+                    <p><b>Especialista:</b> <span id="resumo-barbeiro"></span></p>
+                    <p><b>Data:</b> <span id="resumo-data"></span> às <span id="resumo-hora"></span></p>
+                    <p><b>Serviços:</b> <span id="resumo-servicos"></span></p>
+                    <hr>
+                    <p class="resumo-destaque"><b>Total:</b> <span id="resumo-valor"></span></p>
+                </div>
+            </div>
+
+            <button class="btn-gigante btn-rose" id="btn-confirmar-final" onclick="confirmarAgendamento()">
+                CONFIRMAR AGENDAMENTO
+            </button>
+        </div>
+
+        <!-- PASSO 6: Sucesso! -->
+        <div id="passo-6-sucesso" style="display: none; text-align: center;">
+            <div class="cartao-resumo" style="text-align: center; margin-top: 20px;">
+                <span class="material-symbols-rounded icone-sucesso" style="font-size: 64px;">check_circle</span>
+                <h3 style="font-size: 28px; margin-bottom: 10px;">Agendado! 🌹</h3>
+                <p>Seu horário foi confirmado com sucesso. Te esperamos!</p>
+            </div>
+
+            <button class="btn-gigante" onclick="enviarWhatsAppProfissional()"
+                    style="background: #25D366; color: #FFF; margin-bottom: 15px; border: none;">
+                <span class="material-symbols-rounded">chat</span>
+                ENVIAR COMPROVANTE (WHATSAPP)
+            </button>
+
+            <button class="btn-voltar-simples" onclick="voltarAoInicioCliente()">Voltar ao Início</button>
+        </div>
+
+    </div>
+
+    <script src="agendar.js"></script>
+</body>
+</html>
